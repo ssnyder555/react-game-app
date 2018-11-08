@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CreateGame from '../CreateGame';
 import GameList from '../GameList';
 // import EditGame from '../EditGame';
-
+import MapContainer from '../MapContainer';
 
 class GameContainer extends Component {
   constructor(){
@@ -146,6 +146,7 @@ class GameContainer extends Component {
       <div>
         <CreateGame addGame={this.addGame}/>
         <GameList games={this.state.games} deleteGame={this.deleteGame}/>
+        <MapContainer />
       </div>
     )
   }
