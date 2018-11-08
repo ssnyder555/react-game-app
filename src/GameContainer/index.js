@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CreateGame from '../CreateGame';
+import GameList from '../GameList';
 
 
 class GameContainer extends Component {
@@ -9,6 +10,21 @@ class GameContainer extends Component {
     this.state = {
       games: []
     }
+  }
+  getGames = async () => {
+    // where we will make our fetch call to get all games
+    const games = await fetch('http://localhost:9000/api/v1/games')
+    const gamesParsedJSON = await games.json();
+    return gamesParsedJSON
+  }
+  componentDidMount(){
+    // get all the games, on the intial load of the app
+    this.getGames().then((games) => {
+      this.setState({games: games.data})
+    }).catch((err) => {
+      console.log(err);
+    })
+    //  call to get all the games
   }
 
   addGame = async (game, e) => {
@@ -46,6 +62,7 @@ class GameContainer extends Component {
     return (
       <div>
         <CreateGame addGame={this.addGame}/>
+        <GameList games={this.state.games}/>
       </div>
     )
   }
