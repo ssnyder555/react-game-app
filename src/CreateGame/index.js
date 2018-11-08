@@ -7,7 +7,7 @@ class CreateGame extends Component {
     super();
 
     this.state = {
-      course: '',
+      title: '',
       numberOfHoles: Number,
       swings: Number
     }
@@ -22,7 +22,7 @@ class CreateGame extends Component {
       <form onSubmit={this.props.addGame.bind(null, this.state)}>
         <label>
           Course:
-            <input type='text' name='' value={this.state.course} onChange={this.updateGame}/>
+            <input type='text' name='title' value={this.state.title} onChange={this.updateGame}/>
         </label>
         <label>
           Holes:

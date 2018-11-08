@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CreateGame from '../CreateGame';
 import GameList from '../GameList';
+// import EditGame from '../EditGame';
 
 
 class GameContainer extends Component {
@@ -54,15 +55,97 @@ class GameContainer extends Component {
     } catch(err){
     console.log(err)
   }
+}
+
+  deleteGame = async (id) => {
+
+    const deleteGameResponse = await fetch('http://localhost:9000/api/v1/games/' + id, {
+                                              method: 'DELETE'
+                                            });
+
+    // This is the parsed response from express
+    const deleteGameParsed = await deleteGameResponse.json();
+    // Now that the db has deleted our item, we need to remove it from state
+    this.setState({games: this.state.games.filter((game) => game._id !== id )})
+
+    console.log(deleteGameParsed, ' response from express server')
+      // Then make the delete request, then remove the game from the state array using filter
+}
+// handleEditChange = (e) => {
+//
+//   this.setState({
+//     gameToEdit: {
+//       ...this.state.gameToEdit,
+//       [e.currentTarget.name]: e.currentTarget.value
+//     }
+//   });
+//
+// }
+// closeAndEdit = async (e) => {
+//   // Put request,
+//   e.preventDefault();
+//   // then update state
+//   try {
+//
+//     const editResponse = await fetch('http://localhost:9000/api/v1/games' + this.state.gameToEdit._id, {
+//       method: 'PUT',
+//       body: JSON.stringify({
+//         title: this.state.gameToEdit.title,
+//         description: this.state.gameToEdit.description
+//       }),
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     });
+//
+//     const editResponseParsed = await editResponse.json();
+//
+//     const newGameArrayWithEdit = this.state.games.map((game) => {
+//
+//       if(game._id === editResponseParsed.data._id){
+//         game = editResponseParsed.data
+//       }
+//
+//       return game
+//     });
+//
+//     this.setState({
+//       showEditModal: false,
+//       games: newGameArrayWithEdit
+//     });
+//
+//     console.log(editResponseParsed, ' parsed edit')
+//
+//
+//
+//
+//   } catch(err){
+//     console.log(err)
+//   }
+//
+//   // If you feel up to make the modal (EditMovie Component) and show at the appropiate times
+//
+// }
+// openAndEdit = (gameFromTheList) => {
+//   console.log(gameFromTheList, ' gameToEdit  ');
+//
+//
+//   this.setState({
+//     showEditModal: true,
+//     movieToEdit: {
+//       ...gameFromTheList
+//     }
+//   })
+// }
 
 
-  }
+
   render(){
     console.log(this.state);
     return (
       <div>
         <CreateGame addGame={this.addGame}/>
-        <GameList games={this.state.games}/>
+        <GameList games={this.state.games} deleteGame={this.deleteGame}/>
       </div>
     )
   }
