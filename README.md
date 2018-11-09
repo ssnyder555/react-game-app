@@ -34,10 +34,10 @@ In the project directory, you can run:
 https://trello.com/b/pYahCcmJ/disk-golf-app
 
 
-![alt text](./images/1Login.png)
-![alt text](./images/2Welcome.png)
-![alt text](./images/3Set-up.png)
-![alt text](./images/4Finish.png)
+![alt text](./Images/1Login.png)
+![alt text](./Images/2Welcome.png)
+![alt text](./Images/3Set-up.png)
+![alt text](./Images/4Finish.png)
 
 ## Contributors, etc.
 
