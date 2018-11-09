@@ -17,7 +17,7 @@ In the project directory, you can run:
 
 - I hope it help people keep track of their game's progress more effectively.
 
-- I feel their is not a lot of score keeping golf technology out there.
+- I feel there is not a lot of score keeping golf technology out there.
 
 ## Technology Used:
 
