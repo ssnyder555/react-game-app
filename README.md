@@ -11,9 +11,9 @@ In the project directory, you can run:
 - Disk Throws per hole
 -- at the end of the 18(or whatever) holes a print of how many throws were thrown. *Modal - if you won or lost.
 
-![alt text](/images/1Login.png "Logo Title Text 1")
-![alt text](/images/2Welcome.png "Logo Title Text 1")
-![alt text](/images/3Set-up.png "Logo Title Text 1")
-![alt text](/images/4Finish.png "Logo Title Text 1")
+![alt text](./images/1Login.png)
+![alt text](./images/2Welcome.png)
+![alt text](./images/3Set-up.png)
+![alt text](./images/4Finish.png)
 
 Readme in your front-end repo including links to the above and a description of what your project is, why you chose to make it/what problem it solves, technologies used, installation requirements, the contributors, etc.
