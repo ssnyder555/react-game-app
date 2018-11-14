@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import CreateGame from '../CreateGame';
 import GameList from '../GameList';
-// import EditGame from '../EditGame';
-import MapContainer from '../MapContainer';
+import EditGame from '../EditGame';
+// import MapContainer from '../MapContainer';
 
 class GameContainer extends Component {
   constructor(){
     super();
 
     this.state = {
-      games: []
+      games: [],
+      gameToEdit: {
+        title: '',
+        numberOfHoles: Number,
+        swings: Number,
+        _id: ''
+      },
+      showEditModal: false
+
     }
   }
   getGames = async () => {
@@ -71,82 +79,76 @@ class GameContainer extends Component {
     console.log(deleteGameParsed, ' response from express server')
       // Then make the delete request, then remove the game from the state array using filter
 }
-// handleEditChange = (e) => {
-//
-//   this.setState({
-//     gameToEdit: {
-//       ...this.state.gameToEdit,
-//       [e.currentTarget.name]: e.currentTarget.value
-//     }
-//   });
-//
+handleEditChange = (e) => {
+
+  this.setState({
+    gameToEdit: {
+      ...this.state.gameToEdit,
+      [e.currentTarget.name]: e.currentTarget.value
+    }
+  });
+
+}
+// gameToEdit: {
+//   _id: this.state.gameToEdit._id,
+//   title: this.state.gameToEdit,
+//   numberOfHoles: this.state.gameToEdit.numberOfHoles,
+//   swings: this.state.gameToEdit.swings
 // }
-// closeAndEdit = async (e) => {
-//   // Put request,
-//   e.preventDefault();
-//   // then update state
-//   try {
-//
-//     const editResponse = await fetch('http://localhost:9000/api/v1/games' + this.state.gameToEdit._id, {
-//       method: 'PUT',
-//       body: JSON.stringify({
-//         title: this.state.gameToEdit.title,
-//         description: this.state.gameToEdit.description
-//       }),
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     });
-//
-//     const editResponseParsed = await editResponse.json();
-//
-//     const newGameArrayWithEdit = this.state.games.map((game) => {
-//
-//       if(game._id === editResponseParsed.data._id){
-//         game = editResponseParsed.data
-//       }
-//
-//       return game
-//     });
-//
-//     this.setState({
-//       showEditModal: false,
-//       games: newGameArrayWithEdit
-//     });
-//
-//     console.log(editResponseParsed, ' parsed edit')
-//
-//
-//
-//
-//   } catch(err){
-//     console.log(err)
-//   }
-//
-//   // If you feel up to make the modal (EditMovie Component) and show at the appropiate times
-//
-// }
-// openAndEdit = (gameFromTheList) => {
-//   console.log(gameFromTheList, ' gameToEdit  ');
-//
-//
-//   this.setState({
-//     showEditModal: true,
-//     movieToEdit: {
-//       ...gameFromTheList
-//     }
-//   })
-// }
+closeAndEdit = async (e) => {
+  e.preventDefault();
+  try{
+    const editResponse = await fetch('http://localhost:9000/api/v1/games/' + this.state.gameToEdit._id, {
+      method: 'PUT',
+      body: JSON.stringify({
+        title: this.state.gameToEdit.title,
+        numberOfHoles: this.state.gameToEdit.numberOfHoles,
+        swings: this.state.gameToEdit.swings
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const editResponseParsed = await editResponse.json();
+
+    const newGameArrayWithEdit = this.state.games.map((game) => {
+      if(game._id === editResponseParsed.data._id) {
+        game = editResponseParsed.data
+      }
+      return game
+    });
+
+    this.setState({
+      showEditModal: false,
+      game: newGameArrayWithEdit
+    });
+    console.log(editResponseParsed, ' parsed edit');
+  } catch(err){
+    console.log(err);
+  }
+
+}
+openAndEdit = (gameFromTheList) => {
+  console.log(gameFromTheList, ' gametoedit  ');
 
 
+  this.setState({
+    showEditModal: true,
+    gameToEdit: {
+      ...gameFromTheList
+    }
+  })
 
+}
   render(){
     console.log(this.state);
     return (
       <div>
         <CreateGame addGame={this.addGame}/>
-        <GameList games={this.state.games} deleteGame={this.deleteGame}/>
-        <MapContainer />
+        <GameList games={this.state.games} deleteGame={this.deleteGame} openAndEdit={this.openAndEdit}/>
+
+        {this.state.showEditModal ? <EditGame  gameToEdit={this.state.gameToEdit} handleEditChange={this.handleEditChange} closeAndEdit/> : null}
+
       </div>
     )
   }

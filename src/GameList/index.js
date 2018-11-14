@@ -13,7 +13,7 @@ const Games = (props) => {
         <small>{game.numberOfHoles}</small>
           <small>{game.swings}</small>
 
-        
+        <button onClick={props.openAndEdit.bind(null, game)}>Edit Game</button>
         <button onClick={props.deleteGame.bind(null, game._id)}>Delete Game</button>
       </li>
       )

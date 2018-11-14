@@ -10,11 +10,16 @@ import React from 'react';
           <input type='text' name='title' value={props.gameToEdit.title} onChange={props.handleEditChange}/>
         </label>
         <label>
-          Edit Game Score:
+          Edit number of holes:
           <br/>
-          <input type='number' name='numberOfHoles' value={props.movieToEdit.numberOfHoles} onChange={props.handleEditChange}/>
+          <input type='number' name='numberOfHoles' value={props.numberOfHoles} onChange={props.handleEditChange}/>
         </label>
-        <button type='submit'>Edit Movie</button>
+        <label>
+          Edit Swings:
+          <br/>
+          <input type='number' name='swings' value={props.swings} onChange={props.handleEditChange}/>
+        </label>
+        <button type='submit'>Edit Game</button>
       </form>
     </div>
     )
