@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Form, Button, Label, Segment } from 'semantic-ui-react';
 
 
 class CreateGame extends Component {
@@ -19,24 +19,20 @@ class CreateGame extends Component {
   }
   render(){
     return (
-      <form onSubmit={this.props.addGame.bind(null, this.state)}>
-        <label>
-          Course:
-            <input type='text' name='title' value={this.state.title} onChange={this.updateGame}/>
-        </label>
-        <label>
-          Holes:
-            <input type='number' name='numberOfHoles' value={this.state.numberOfHoles} onChange={this.updateGame}/>
-        </label>
-        <label>
-          Swings:
-            <input type='number' name='swings' value={this.state.swings} onChange={this.updateGame}/>
-        </label>
-        <button type='Submit'>Create Game</button>
-      </form>
-    )
+      <Segment>
+        <h5>Create New Game!</h5>
+        <Form onSubmit={this.props.addGame.bind(null, this.state)}>
+          <Label>Course Name:</Label>
+          <Form.Input type='text' name='title' value={this.state.title} onChange={this.updateGame}/>
+          <Label>Number of Holes:</Label>
+          <Form.Input type='text' name='description' value={this.state.numberOfHoles} onChange={this.updateGame}/>
+          <Label>swings:</Label>
+          <Form.Input type='text' name='description' value={this.state.numberOfSwings} onChange={this.updateGame}/>
+
+          <Button color="blue" type='Submit'>Create Game</Button>
+        </Form>
+      </Segment>
+      )
   }
-
 }
-
 export default CreateGame;

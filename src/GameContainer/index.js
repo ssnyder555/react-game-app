@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import CreateGame from '../CreateGame';
 import GameList from '../GameList';
 import EditGame from '../EditGame';
-// import MapContainer from '../MapContainer';
+// import MapContainer from '../MapContainer'; // If you want to bring this back in you must pass it down.
+import { Grid } from 'semantic-ui-react';
 
 class GameContainer extends Component {
   constructor(){
@@ -20,7 +21,7 @@ class GameContainer extends Component {
 
     }
   }
-  getGames = async () => {
+  getGames = async (e) => {
     // where we will make our fetch call to get all games
     const games = await fetch('http://localhost:9000/api/v1/games')
     const gamesParsedJSON = await games.json();
@@ -143,15 +144,19 @@ openAndEdit = (gameFromTheList) => {
   render(){
     console.log(this.state);
     return (
-      <div>
-        <CreateGame addGame={this.addGame}/>
-        <GameList games={this.state.games} deleteGame={this.deleteGame} openAndEdit={this.openAndEdit}/>
-
-        {this.state.showEditModal ? <EditGame  gameToEdit={this.state.gameToEdit} handleEditChange={this.handleEditChange} closeAndEdit/> : null}
-
-      </div>
-    )
-  }
+      <Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
+      <Grid.Row>
+         <Grid.Column>
+           <CreateGame addGame={this.addGame}/>
+         </Grid.Column>
+          <Grid.Column>
+           <GameList Games={this.state.games} deleteGame={this.deleteGame} openAndEdit={this.openAndEdit}/>
+         </Grid.Column>
+         <EditGame open={this.state.showEditModal} movieToEdit={this.state.movieToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
+       </Grid.Row>
+     </Grid>
+     )
+ }
 }
 
 export default GameContainer;
