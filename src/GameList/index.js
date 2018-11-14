@@ -1,27 +1,25 @@
+
 import React from 'react';
 import { Card, Button} from 'semantic-ui-react';
 
-
-
-// DUMB COMPONENT
-// pure function, takes an input and renders ui
+// Pure Function, takes an input and renders ui
 const Games = (props) => {
-  // map over the games to create a list
-  const games = props.games.map((game, i) => {
+  // you'll propably have to map over the games and create your list items here
+  const games = props.Games.map((game, i) => {
     return (
       <Card key={game._id}>
         <Card.Content>
           <Card.Header>{game.title}</Card.Header>
-          <Card.NumberOfHoles>{game.numberOfHoles}</Card.NumberOfHoles>
-          <Card.Swings>{game.swings}</Card.Swings>
+          <Card.Description>{game.course}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Button color="blue" onClick={props.openAndEdit.bind(null, game)}>Edit Game</Button>
-          <Button color="purple" onClick={props.deleteGame.bind(null, game._id)}>Delete Game</Button>
+          <Button color="green" onClick={props.openAndEdit.bind(null, game)}>Edit Game</Button>
+          <Button color="red" onClick={props.deleteGame.bind(null, game._id)}>Delete Game</Button>
         </Card.Content>
       </Card>
       )
-  })
+  });
+
   return (
     <div>
       <h3>Games</h3>
@@ -31,4 +29,6 @@ const Games = (props) => {
     </div>
     )
 }
+
+
 export default Games;

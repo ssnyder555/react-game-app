@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "google-maps-react": "^2.0.2",
+    "map": "^1.0.1",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-router-dom": "^4.3.1",

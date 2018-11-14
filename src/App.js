@@ -1,4 +1,4 @@
-import React, from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import GameContainer from './GameContainer';
 import Header from './Header';

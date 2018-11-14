@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CreateGame from '../CreateGame';
 import GameList from '../GameList';
-import EditGame from '../EditGame';
+// import EditGame from '../EditGame';
 // import MapContainer from '../MapContainer'; // If you want to bring this back in you must pass it down.
 import { Grid } from 'semantic-ui-react';
 
@@ -11,10 +11,10 @@ class GameContainer extends Component {
 
     this.state = {
       games: [],
-      gameToEdit: {
+      gamesToEdit: {
         title: '',
-        numberOfHoles: Number,
-        swings: Number,
+        course: '',
+
         _id: ''
       },
       showEditModal: false
@@ -152,7 +152,6 @@ openAndEdit = (gameFromTheList) => {
           <Grid.Column>
            <GameList Games={this.state.games} deleteGame={this.deleteGame} openAndEdit={this.openAndEdit}/>
          </Grid.Column>
-         <EditGame open={this.state.showEditModal} movieToEdit={this.state.movieToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
        </Grid.Row>
      </Grid>
      )
@@ -160,3 +159,9 @@ openAndEdit = (gameFromTheList) => {
 }
 
 export default GameContainer;
+
+
+
+
+
+//          <EditGame open={this.state.showEditModal} gamesToEdit={this.state.gameToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>

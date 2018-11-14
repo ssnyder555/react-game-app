@@ -8,8 +8,7 @@ class CreateGame extends Component {
 
     this.state = {
       title: '',
-      numberOfHoles: Number,
-      swings: Number
+      course: '',
     }
   }
   updateGame = (e) => {
@@ -22,13 +21,10 @@ class CreateGame extends Component {
       <Segment>
         <h5>Create New Game!</h5>
         <Form onSubmit={this.props.addGame.bind(null, this.state)}>
-          <Label>Course Name:</Label>
+          <Label>Game:</Label>
           <Form.Input type='text' name='title' value={this.state.title} onChange={this.updateGame}/>
-          <Label>Number of Holes:</Label>
-          <Form.Input type='text' name='description' value={this.state.numberOfHoles} onChange={this.updateGame}/>
-          <Label>swings:</Label>
-          <Form.Input type='text' name='description' value={this.state.numberOfSwings} onChange={this.updateGame}/>
-
+          <Label>Couse:</Label>
+          <Form.Input type='text' name='course' value={this.state.course} onChange={this.updateGame}/>
           <Button color="blue" type='Submit'>Create Game</Button>
         </Form>
       </Segment>
