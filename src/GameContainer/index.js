@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CreateGame from '../CreateGame';
 import GameList from '../GameList';
 // import EditGame from '../EditGame';
-// import MapContainer from '../MapContainer'; // If you want to bring this back in you must pass it down.
+import MapContainer from '../MapContainer'; // If you want to bring this back in you must pass it down.
 import { Grid } from 'semantic-ui-react';
 
 class GameContainer extends Component {
@@ -144,16 +144,21 @@ openAndEdit = (gameFromTheList) => {
   render(){
     console.log(this.state);
     return (
-      <Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
-      <Grid.Row>
-         <Grid.Column>
-           <CreateGame addGame={this.addGame}/>
-         </Grid.Column>
-          <Grid.Column>
-           <GameList Games={this.state.games} deleteGame={this.deleteGame} openAndEdit={this.openAndEdit}/>
-         </Grid.Column>
-       </Grid.Row>
-     </Grid>
+      <div>
+        <Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
+          <Grid.Row>
+
+           <Grid.Column>
+             <CreateGame addGame={this.addGame}/>
+           </Grid.Column>
+
+            <Grid.Column>
+             <GameList Games={this.state.games} deleteGame={this.deleteGame} openAndEdit={this.openAndEdit}/>
+           </Grid.Column>
+
+         </Grid.Row>
+       </Grid>
+      </div>
      )
  }
 }
